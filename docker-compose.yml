@@ -1,16 +1,15 @@
-version: '3'
+version: "2"
+
 services:
-  database:
-    image: zaawansowanesystemybazdanych/bazadanych
-    volumes:
-      - ./oradata:/opt/oracle/oradata
-      - ./setup:/opt/oracle/scripts/setup
-      - ./startup:/opt/oracle/scripts/startup
-    ports:
-      - 1521:1521
-      - 8080:8080
-      - 5500:5500
+  oracle-xe:
+    image: daggerok/oracle:12.1.0.2-se2
+    shm_size: 1g
     environment:
-      - ORACLE_SID=sid
-      - ORACLE_PDB=pdb
-      - ORACLE_PWD=pwd
+      ORACLE_PWD: password
+      ORACLE_SID: sid
+      ORACLE_PDB: pdb
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./setup:/docker-entrypoint-initdb.d/setup
+      - ./startup:/docker-entrypoint-initdb.d/startup
