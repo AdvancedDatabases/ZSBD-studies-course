@@ -1,8 +1,10 @@
 version: "2"
 
 services:
-  oracle-xe:
-    image: daggerok/oracle:12.1.0.2-se2
+  oracle-xe-custom:
+    container_name: zsbd-container
+    build:
+      context: .
     shm_size: 1g
     environment:
       ORACLE_PWD: password
@@ -13,3 +15,4 @@ services:
     volumes:
       - ./setup:/docker-entrypoint-initdb.d/setup
       - ./startup:/docker-entrypoint-initdb.d/startup
+      - ./benchmark:/home/oracle/benchmark
