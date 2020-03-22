@@ -18,9 +18,6 @@ test_path=''
 number_of_repeats=1
 require_restart=''
 
-# check for required dependencies
-## multitime: https://github.com/ltratt/multitime/
-fail_if_not_installed 'multitime'
 
 # parse parameters
 for i in "$@"
