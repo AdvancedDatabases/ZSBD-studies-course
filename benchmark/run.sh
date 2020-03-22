@@ -135,7 +135,7 @@ get_remote_test_paths
 pass_if_nonempty_file "$remote_suite_files_list"
 
 tests_no=$(wc -l "$remote_suite_files_list")
-benchmark_summary="$PWD/benchmark_summary-$remote_test_suites_dir_name.tsv"
+benchmark_summary="$PWD/benchmark_summary-$remote_suite_name.tsv"
 INFO "Starting benchmark for $tests_no tests from test suite '$remote_test_suites_dir_name' ($remote_suite_dir) ..."
 while read test_path; do
     test_name=$( echo ${test_path##/*/} )
