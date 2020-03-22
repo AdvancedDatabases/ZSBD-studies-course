@@ -1,0 +1,4 @@
+select min(C.COUNTRY_NAME), count(LOCATION_ID)
+from COUNTRIES C join LOCATIONS L on C.COUNTRY_ID = L.COUNTRY_ID
+group by L.COUNTRY_ID
+having count(LOCATION_ID) > 1;
