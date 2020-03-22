@@ -2,10 +2,10 @@ version: "2.2"
 
 services:
   oracle-xe-custom:
+    image: daggerok/oracle:12.1.0.2-se2
     container_name: zsbd-container
-    build:
-      context: .
     shm_size: 1g
+    working_dir: /home/oracle/benchmark
     environment:
       ORACLE_PWD: password
       ORACLE_SID: sid
