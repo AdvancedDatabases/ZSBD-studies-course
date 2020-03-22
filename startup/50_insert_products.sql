@@ -1,3 +1,7 @@
+CONNECT usr/pwd@//localhost:1521/pdb;
+
+REM INSERTING into PRODUCTS
+SET DEFINE OFF;
 INSERT ALL
   INTO PRODUCTS (PRODUCT_ID,PRODUCT_NAME,DESCRIPTION,STANDARD_COST,LIST_PRICE,CATEGORY_ID) values (1,"Handbag Holiday Cutile Oil","With added vitamins A and E, this heavenly-smelling oil revives and restores dry, split cuticles.",13.34,14.34,116)
   INTO PRODUCTS (PRODUCT_ID,PRODUCT_NAME,DESCRIPTION,STANDARD_COST,LIST_PRICE,CATEGORY_ID) values (2,"LIPPY","Lippy: British slang for someone who makes impertinent or cheeky remarks. Introducing a range of long-wearing, lacquer-like lip glosses in shades to match the famous butter LONDON nail lacquers. From the punchy fuchsia pink of Primrose Hill to the tr",2.4,3.4,55)
@@ -10915,3 +10919,4 @@ INSERT ALL
   INTO PRODUCTS (PRODUCT_ID,PRODUCT_NAME,DESCRIPTION,STANDARD_COST,LIST_PRICE,CATEGORY_ID) values (10894,"Shade & Illuminate Lips","Two shades (one dark and one light) complement for shaping lips with high pigmentation in a velvet matte finish. Using the dual-ended applicator, featuring a sponge on one end and a lip brush on the other, both shades can be applied to create a subtl",15.24,16.24,61)
   INTO PRODUCTS (PRODUCT_ID,PRODUCT_NAME,DESCRIPTION,STANDARD_COST,LIST_PRICE,CATEGORY_ID) values (10895,"Shade & Illuminate Lip Color","Tom Ford Beauty Shade & Illuminate Lip Color is a Lipstick. There are 12 shades that have been released, which you can select from below.",12.37,13.37,57)
 SELECT * FROM dual;
+COMMIT;
