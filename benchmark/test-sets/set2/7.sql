@@ -1,3 +1,4 @@
+-- set quantity to zero for selected category
 update INVENTORIES
 set QUANTITY = 0
 where PRODUCT_ID in

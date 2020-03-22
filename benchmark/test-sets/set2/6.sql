@@ -1,3 +1,4 @@
+-- set orders with items in China to canceled
 update ORDERS
 set STATUS = 'Canceled'
 where STATUS = 'Pending' and ORDER_ID in (
