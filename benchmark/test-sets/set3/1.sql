@@ -1,6 +1,8 @@
--- 1. Wygenerowanie listy klientów oraz sumy wartości (kwota pieniężna)
--- anulowanych przez nich zamówień, pogrupowanej wg pracowników którzy
--- obsługiwali te zamówienia. ~ 200
+/*
+Wygenerowanie listy klientów oraz sumy wartości (kwota pieniężna)
+anulowanych przez nich zamówień, pogrupowanej wg pracowników którzy
+obsługiwali te zamówienia. ~ 8000
+*/
 
 SELECT c.name, e.first_name, e.last_name,
   SUM(oi.quantity * oi.unit_price) AS cancelled_orders_cost

@@ -1,6 +1,8 @@
--- Wygenerowanie listy kategorii produktów (Product_categories) z liczbą
--- zamówień (Orders) produktów tej kategorii oraz procentowym udziałem liczby
--- zamówień tych kategorii w liczbie wszystkich zamówień. ~5
+/*
+Wygenerowanie listy kategorii produktów (Product_categories) z liczbą
+zamówień (Orders) produktów tej kategorii oraz procentowym udziałem liczby
+zamówień tych kategorii w liczbie wszystkich zamówień. ~5
+*/
 
 SELECT  pc.CATEGORY_NAME, COUNT(distinct o.ORDER_ID) number_of_orders,
   COUNT(distinct o.ORDER_ID) / (select count(*) from ORDERS) ratio

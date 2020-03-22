@@ -1,0 +1,22 @@
+/*
+ Usunięcie wszystkich pracowników, którzy pracują krócej niż rok i obsłużyli
+ mniej niż 100 zamówień. ~ 10000
+ */
+DELETE
+FROM EMPLOYEES e
+WHERE ROUND(MONTHS_BETWEEN(sysdate, e.HIRE_DATE),0) <= 12
+    AND e.EMPLOYEE_ID IN (SELECT SALESMAN_ID FROM (
+            SELECT SALESMAN_ID, COUNT(*) ORDERS_NUMBER
+            FROM ORDERS GROUP BY SALESMAN_ID)
+        WHERE ORDERS_NUMBER < 100);
+
+-- check
+/*
+SELECT *
+FROM EMPLOYEES e
+WHERE ROUND(MONTHS_BETWEEN(sysdate, e.HIRE_DATE),0) <= 12
+    AND e.EMPLOYEE_ID IN (SELECT SALESMAN_ID FROM (
+            SELECT SALESMAN_ID, COUNT(*) ORDERS_NUMBER
+            FROM ORDERS GROUP BY SALESMAN_ID)
+        WHERE ORDERS_NUMBER < 100);
+*/
