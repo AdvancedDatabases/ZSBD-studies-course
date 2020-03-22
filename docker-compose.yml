@@ -1,4 +1,4 @@
-version: "2"
+version: "2.2"
 
 services:
   oracle-xe-custom:
@@ -15,4 +15,7 @@ services:
     volumes:
       - ./setup:/docker-entrypoint-initdb.d/setup
       - ./startup:/docker-entrypoint-initdb.d/startup
-      - ./benchmark:/home/oracle/benchmark
+      - ./benchmark:/home/oracle/benchmark 
+    cpu_count: 1
+    cpu_percent: 50
+    mem_limit: 2000000000
