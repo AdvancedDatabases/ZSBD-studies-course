@@ -53,11 +53,13 @@ container_inspect_logs() {
 }
 
 docker_compose_reset() {
-	fail_if_empty "$1"
+	fail_if_empty "$1" && fail_if_empty "$2"
 	docker_compose_dir="$1"
+	container_volume="$2"
 	cd "$docker_compose_dir"
 	docker-compose down
-	# docker volume rm "$CONTAINER_VOLUME"
+	DEBUG "Delete volume $container_volume ..."
+	docker volume rm "$container_volume"
 	docker-compose up -d
 	cd -
 }

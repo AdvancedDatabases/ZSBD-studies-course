@@ -20,6 +20,7 @@ worker_name='worker.sh'
 test_suite_cfg_name='require_restart'
 remote_suite_files_list="$PWD/remote_scripts_list.tmp"
 container_name='zsbd-container'
+volume_name='zsbd-studies-course_oracledata'
 docker_compose_dir=$(as_abs '..')
 loaded_data_msg='DONE: Executing user defined scripts'
 benchmark_summary='benchmark_summary.tsv'
@@ -59,7 +60,7 @@ done
 
 reset_container() {
     INFO "Restarting container ..."
-    docker_compose_reset "$docker_compose_dir"
+    docker_compose_reset "$docker_compose_dir" "$volume_name"
     INFO "Waiting till container $container_name and database will be ready to use ..."
     wait_for_container "$container_name" "$loaded_data_msg"
     INFO "Container $container_name and database is ready to use!"
@@ -118,6 +119,7 @@ if [[ -z "$remote_suite_name" ]]; then
 	exit 1
 fi
 
+benchmark_summary="$PWD/benchmark_summary-$remote_suite_name.tsv"
 INFO "Remove stale logs ..."
 remove_stale_logs "$PWD"
 rm -f "$benchmark_summary"
@@ -135,7 +137,7 @@ get_remote_test_paths
 pass_if_nonempty_file "$remote_suite_files_list"
 
 tests_no=$(wc -l "$remote_suite_files_list")
-benchmark_summary="$PWD/benchmark_summary-$remote_suite_name.tsv"
+
 INFO "Starting benchmark for $tests_no tests from test suite '$remote_test_suites_dir_name' ($remote_suite_dir) ..."
 while read test_path; do
     test_name=$( echo ${test_path##/*/} )

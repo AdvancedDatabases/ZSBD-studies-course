@@ -15,7 +15,11 @@ services:
     volumes:
       - ./setup:/docker-entrypoint-initdb.d/setup
       - ./startup:/docker-entrypoint-initdb.d/startup
-      - ./benchmark:/home/oracle/benchmark 
+      - ./benchmark:/home/oracle/benchmark
+      - oracledata:/opt/oracle/oradata
     cpu_count: 1
     cpu_percent: 50
     mem_limit: 2000000000
+
+volumes:
+  oracledata:
