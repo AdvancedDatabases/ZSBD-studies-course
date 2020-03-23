@@ -18,7 +18,7 @@ services:
       - ./benchmark:/home/oracle/benchmark
       - oracledata:/opt/oracle/oradata
     cpus: '0.50'
-    mem_limit: 2000000000
+    mem_limit: 1073741824
 
 volumes:
   oracledata:
