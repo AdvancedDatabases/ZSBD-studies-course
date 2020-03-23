@@ -151,7 +151,7 @@ while read test_path; do
     else
         run_test "$test_path" $number_of_repeats
     fi
-    INFO "All $number_of_repeats tests for 'test_name' executed."
+    INFO "All $number_of_repeats tests for '$test_name' executed."
     # this assumes that this directory is mounted just like in docker-compose.yml
     local_test_path="$PWD/$remote_test_suites_dir_name/$remote_suite_name/$test_name"
     local_test_results_path="$local_test_path.log"
