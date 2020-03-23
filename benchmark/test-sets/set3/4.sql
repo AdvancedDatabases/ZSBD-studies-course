@@ -30,7 +30,6 @@ top5_prod_per_month_above_avg AS ( SELECT tp.PRODUCT_ID, tp.PRODUCT_NAME, tp.ord
     FROM top5_prod_per_month tp JOIN avg_prods_monthly_income ap
         ON tp.order_month = ap.order_month
     WHERE tp.monthly_product_income >= ap.avg_monthly_product_income)
-
 select ORDER_ID, ITEM_ID, q.PRODUCT_ID, p.PRODUCT_NAME, ORDER_DATE
 FROM (SELECT o.ORDER_ID, oi.ITEM_ID, o.ORDER_DATE,
              p.PRODUCT_ID, TO_CHAR( o.ORDER_DATE, 'YYYY-MM' ) date_month
