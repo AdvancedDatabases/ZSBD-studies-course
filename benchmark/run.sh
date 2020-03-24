@@ -20,6 +20,9 @@ worker_name='worker.sh'
 test_suite_cfg_name='require_restart'
 remote_suite_files_list="$PWD/remote_scripts_list.tmp"
 container_name='zsbd-container'
+# the name of existed 'template' volume with all data prepared
+volume_dump_name='zsbd-studies-course_oracledata-dump'
+# the name of target volume, the one used for tests - the copy of dump volume
 volume_name='zsbd-studies-course_oracledata'
 docker_compose_dir=$(as_abs '..')
 loaded_data_msg='DONE: Executing user defined scripts'
@@ -58,9 +61,8 @@ esac
 done
 
 
-reset_container() {
-    INFO "Restarting container ..."
-    docker_compose_reset "$docker_compose_dir" "$volume_name"
+recreate_db_container() {
+    recreate_container "$docker_compose_dir" "$volume_name" "$volume_dump_name"
     INFO "Waiting till container $container_name and database will be ready to use ..."
     wait_for_container "$container_name" "$loaded_data_msg"
     INFO "Container $container_name and database is ready to use!"
@@ -79,7 +81,7 @@ run_single_test_and_reset() {
     INFO "Execute single test (no repetition) ..."
     run_test "$test_path" 1
     INFO "Restart container after test ..."
-    reset_container
+    recreate_db_container
 }
 
 get_remote_test_paths() {
@@ -122,10 +124,11 @@ fi
 benchmark_summary="$PWD/benchmark_summary-$remote_suite_name.tsv"
 INFO "Remove stale logs ..."
 remove_stale_logs "$PWD"
+INFO "Remove old results ..."
 rm -f "$benchmark_summary"
 
-# reset container
-reset_container
+# remove container and associated volume
+recreate_db_container
 
 # set required variable based on given parameters
 remote_test_suites_dir="$remote_workdir/$remote_test_suites_dir_name"  # /home/oracle/test-sets/dummy/require_restart
