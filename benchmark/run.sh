@@ -26,7 +26,7 @@ volume_dump_name='zsbd-studies-course_oracledata-dump'
 volume_name='zsbd-studies-course_oracledata'
 docker_compose_dir=$(as_abs '..')
 loaded_data_msg='DONE: Executing user defined scripts'
-benchmark_summary='benchmark_summary.tsv'
+benchmark_summary='benchmark_summary.html'
 
 
 # parse parameters
@@ -121,7 +121,8 @@ if [[ -z "$remote_suite_name" ]]; then
 	exit 1
 fi
 
-benchmark_summary="$PWD/benchmark_summary-$remote_suite_name.tsv"
+currentDateTime=`date +'%Y%m%dT%H%M%S'`
+benchmark_summary="$PWD/benchmark_summary-$remote_suite_name+$currentDateTime.html"
 INFO "Remove stale logs ..."
 remove_stale_logs "$PWD"
 INFO "Remove old results ..."
@@ -160,6 +161,7 @@ while read test_path; do
     local_test_results_path="$local_test_path.log"
     gather_stats "$local_test_results_path" "$benchmark_summary" "$test_name"
 done <"$remote_suite_files_list"
+echo -e "</table>\n" >> $benchmark_summary
 INFO "Test finished."
 INFO "Benchmark summary stored in $benchmark_summary"
 rm "$remote_suite_files_list"

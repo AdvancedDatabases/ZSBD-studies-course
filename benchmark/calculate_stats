@@ -28,15 +28,30 @@ open_mode='a+' if args.append else 'w'
 with open(in_path, 'r') as ifile:
     measures = [float(l.strip()) for l in ifile]
 
-header="test_name\tn\tmin_time\tavg_time\tmax_time\n"
+
+header="<style type=\"text/css\">\n"
+header+=".tg  {border-collapse:collapse;border-spacing:0;}\n"
+header+=".tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n"
+header+=".tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n"
+header+=".tg .tg-fymr{font-weight:bold;border-color:inherit;text-align:left;vertical-align:top}\n"
+header+=".tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}\n"
+header+="</style>\n"
+header+="<table class=\"tg\">\n"
+header+="\t<tr>\n"
+header+="\t\t<th class=\"tg-fymr\">test_name</th>\n"
+header+="\t\t<th class=\"tg-fymr\">n</th>\n"
+header+="\t\t<th class=\"tg-fymr\">tmin_time</th>\n"
+header+="\t\t<th class=\"tg-fymr\">avg_time</th>\n"
+header+="\t\t<th class=\"tg-fymr\">max_time</th>\n"
+header+="\t</tr>\n"
+
 n = len(measures)
 min_time = min(measures)
 max_time = max(measures)
 mean_time = sum(measures) / n
 
 add_header = is_empty(out_path) or open_mode == 'w'
-
 with open(out_path, open_mode) as ofile:
     if add_header:
         ofile.write(header)
-    ofile.write("{0}\t{4}\t{1:.3f}\t{2:.3f}\t{3:.3f}\n".format(name, min_time, mean_time, max_time, n))
+    ofile.write("\t<tr>\n\t\t<td class=\"tg-0pky\">{0}</td>\n\t\t<td class=\"tg-0pky\">{4}</td>\n\t\t<td class=\"tg-0pky\">{1:.3f}</td>\n\t\t<td class=\"tg-0pky\">{2:.3f}</td>\n\t\t<td class=\"tg-0pky\">{3:.3f}</td>\n\t</tr>\n".format(name, min_time, mean_time, max_time, n))
