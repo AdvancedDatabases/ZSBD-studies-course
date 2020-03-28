@@ -19,7 +19,7 @@ WHERE ORDER_ID IN
                              FROM (
                                       SELECT E.EMPLOYEE_ID
                                       FROM EMPLOYEES E
-                                      WHERE E.HIRE_DATE >= TO_DATE('2016-01-01', 'yyyy-MM-dd')
+                                      WHERE to_char(TO_DATE(E.HIRE_DATE, 'yyyy-MM-dd'), 'yyyy-MM-dd') > TO_DATE('2016-01', 'yyyy-MM')
                                       ORDER BY E.HIRE_DATE
                                   )
                              WHERE ROWNUM <= 1
