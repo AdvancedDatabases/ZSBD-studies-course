@@ -20,12 +20,14 @@ worker_name='worker.sh'
 test_suite_cfg_name='require_restart'
 remote_suite_files_list="$PWD/remote_scripts_list.tmp"
 container_name='zsbd-container'
+service_name='benchmark-env'
 # the name of existed 'template' volume with all data prepared
 volume_dump_name='zsbd-studies-course_oracledata-dump'
 # the name of target volume, the one used for tests - the copy of dump volume
 volume_name='zsbd-studies-course_oracledata'
 docker_compose_dir=$(as_abs '..')
-loaded_data_msg='DONE: Executing user defined scripts'
+# loaded_data_msg='DONE: Executing user defined scripts'
+loaded_data_msg='DATABASE IS READY TO USE!'
 benchmark_summary='benchmark_summary.html'
 
 
@@ -62,7 +64,7 @@ done
 
 
 recreate_db_container() {
-    recreate_container "$docker_compose_dir" "$volume_name" "$volume_dump_name"
+    recreate_container "$docker_compose_dir" "$service_name" "$volume_name" "$volume_dump_name"
     INFO "Waiting till container $container_name and database will be ready to use ..."
     wait_for_container "$container_name" "$loaded_data_msg"
     INFO "Container $container_name and database is ready to use!"

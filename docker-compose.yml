@@ -1,7 +1,7 @@
 version: "2.2"
 
 services:
-  oracle-xe-custom:
+  benchmark-env:
     image: daggerok/oracle:12.1.0.2-se2
     container_name: zsbd-container
     shm_size: 1g
@@ -14,11 +14,29 @@ services:
       - "1521:1521"
     volumes:
       - ./setup:/docker-entrypoint-initdb.d/setup
-      - ./startup:/docker-entrypoint-initdb.d/startup
       - ./benchmark:/home/oracle/benchmark
+      # - ./startup:/docker-entrypoint-initdb.d/startup
       - oracledata:/opt/oracle/oradata
     cpus: '0.50'
     mem_limit: 1073741824
+
+  normal-env:
+    image: daggerok/oracle:12.1.0.2-se2
+    container_name: zsbd-container
+    shm_size: 1g
+    working_dir: /home/oracle/benchmark
+    environment:
+      ORACLE_PWD: password
+      ORACLE_SID: sid
+      ORACLE_PDB: pdb
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./setup:/docker-entrypoint-initdb.d/setup
+      - ./init_startup:/docker-entrypoint-initdb.d/startup
+      - ./benchmark:/home/oracle/benchmark
+      - oracledata:/opt/oracle/oradata
+
 
 volumes:
   oracledata:

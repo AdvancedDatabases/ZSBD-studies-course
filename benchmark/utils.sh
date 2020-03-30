@@ -63,6 +63,8 @@ wait_for_container() {
 		container_inspect_logs "$c_name" "$log_msg"
 		loaded=$?
 	done
+	# extra 30 seconds to ensure that dbms is ready for querying
+	sleep 60
 }
 
 
@@ -108,10 +110,11 @@ remove_volume() {
 
 recreate_container() {
 	# recreates container and associated volume
-	fail_if_empty "$1" && fail_if_empty "$2" && fail_if_empty "$3"
+	fail_if_empty "$1" && fail_if_empty "$2" && fail_if_empty "$3" && fail_if_empty "$4"
 	docker_compose_dir="$1"
-	container_volume="$2"
-	volume_dump="$3"
+	service_name="$2"
+	container_volume="$3"
+	volume_dump="$4"
 	cd "$docker_compose_dir"
 	INFO "Stopping container ..."
 	docker-compose down
@@ -119,8 +122,8 @@ recreate_container() {
 	remove_volume "$container_volume"
 	INFO "Create new volume $container_volume from $volume_dump ..."
 	copy_volume "$volume_dump" "$container_volume"
-	INFO "Starting container ..."
-	docker-compose up -d
+	INFO "Starting container (service: $service_name)..."
+	docker-compose up -d "$service_name"
 	cd -
 }
 
