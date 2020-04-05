@@ -33,7 +33,7 @@ dla parametru *-i*, np:
 Uwaga! W celu uruchomienia środowiska testowego z regułami ECA, należy wywołać
 skrypt z parametrem *--eca*, tzn:
 ```
-./run.sh -i=set3 --eca
+./run.sh -i=set3-eca --eca
 ```
 
 
