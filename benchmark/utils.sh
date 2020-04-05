@@ -64,7 +64,7 @@ wait_for_container() {
 		loaded=$?
 	done
 	# extra 30 seconds to ensure that dbms is ready for querying
-	sleep 60
+	sleep 120
 }
 
 
