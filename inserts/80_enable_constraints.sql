@@ -13,5 +13,6 @@ ALTER TABLE order_items ENABLE CONSTRAINT fk_order_items_products;
 ALTER TABLE order_items ENABLE CONSTRAINT fk_order_items_orders;
 ALTER TABLE inventories ENABLE CONSTRAINT fk_inventories_products;
 ALTER TABLE inventories ENABLE CONSTRAINT fk_inventories_warehouses;
-
+ALTER TABLE orders
+ADD CONSTRAINT ORDER_STATUS_CK CHECK(STATUS IN ('Shipped', 'Pending', 'Canceled'));
 COMMIT;
