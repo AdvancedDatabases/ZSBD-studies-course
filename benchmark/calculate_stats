@@ -22,12 +22,14 @@ def is_empty(fpath):
 args = _parse_args()
 in_path = args.in_path
 out_path = args.out_path
+out_csv_path = args.out_path.split('.')[0]+'.csv'
 name = args.test_name
 open_mode='a+' if args.append else 'w'
 
 with open(in_path, 'r') as ifile:
     measures = [float(l.strip()) for l in ifile]
 
+csv_header="test_name\tn\tmin_time\tavg_time\tmax_time\n"
 
 header="<style type=\"text/css\">\n"
 header+=".tg  {border-collapse:collapse;border-spacing:0;}\n"
@@ -55,3 +57,8 @@ with open(out_path, open_mode) as ofile:
     if add_header:
         ofile.write(header)
     ofile.write("\t<tr>\n\t\t<td class=\"tg-0pky\">{0}</td>\n\t\t<td class=\"tg-0pky\">{4}</td>\n\t\t<td class=\"tg-0pky\">{1:.3f}</td>\n\t\t<td class=\"tg-0pky\">{2:.3f}</td>\n\t\t<td class=\"tg-0pky\">{3:.3f}</td>\n\t</tr>\n".format(name, min_time, mean_time, max_time, n))
+
+with open(out_csv_path, open_mode) as ofile:
+    if add_header:
+        ofile.write(csv_header)
+    ofile.write("{0}\t{4}\t{1:.3f}\t{2:.3f}\t{3:.3f}\n".format(name, min_time, mean_time, max_time, n))
