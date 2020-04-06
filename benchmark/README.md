@@ -30,6 +30,13 @@ dla parametru *-i*, np:
 ./run.sh -i=set3
 ```
 
+Uwaga! W celu uruchomienia środowiska testowego z regułami ECA, należy wywołać
+skrypt z parametrem *--eca*, tzn:
+```
+./run.sh -i=set3-eca --eca
+```
+
+
 ## Odtwarzanie środowiska
 Jeżeli w zbiorze testowym występują skrpyty, które zmieniają stan bazy danych
 i wymagają przywrócenia bazy danych do stanu pierwotnego, to przed uruchomieniem

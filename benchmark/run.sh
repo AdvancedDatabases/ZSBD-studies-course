@@ -21,6 +21,8 @@ test_suite_cfg_name='require_restart'
 remote_suite_files_list="$PWD/remote_scripts_list.tmp"
 container_name='zsbd-container'
 service_name='benchmark-env'
+service_with_eca_name='benchmark-eca-env'
+used_service_name="$service_name"
 # the name of existed 'template' volume with all data prepared
 volume_dump_name='zsbd-studies-course_oracledata-dump'
 # the name of target volume, the one used for tests - the copy of dump volume
@@ -29,7 +31,7 @@ docker_compose_dir=$(as_abs '..')
 # loaded_data_msg='DONE: Executing user defined scripts'
 loaded_data_msg='DATABASE IS READY TO USE!'
 benchmark_summary='benchmark_summary.html'
-
+with_eca=''
 
 # parse parameters
 for i in "$@"
@@ -54,6 +56,9 @@ case $i in
     -r | --require-restart)
     	require_restart='yes'
     	;;
+    --eca)
+       	with_eca='yes'
+       	;;
     -h | --help)
 	    echo "$DESCR"
 	    echo "$USAGE"
@@ -63,8 +68,20 @@ esac
 done
 
 
+# import logging functions
+source "$LOGGING_SCRIPT" "$LOG_FILE"
+echo "Storing logs in file: $LOG_FILE ..."
+
+# set docker service to use
+if [ ! -z "$with_eca" ];then
+	used_service_name="$service_with_eca_name"
+	INFO "Setting env with ECA rules to use during benchmark ..."
+fi
+
+INFO "Used docker service name: $used_service_name"
+
 recreate_db_container() {
-    recreate_container "$docker_compose_dir" "$service_name" "$volume_name" "$volume_dump_name"
+    recreate_container "$docker_compose_dir" "$used_service_name" "$volume_name" "$volume_dump_name"
     INFO "Waiting till container $container_name and database will be ready to use ..."
     wait_for_container "$container_name" "$loaded_data_msg"
     INFO "Container $container_name and database is ready to use!"
@@ -107,10 +124,6 @@ gather_stats() {
     INFO "Calculating stats for $test_name ..."
 	"$PWD/calculate_stats" "$measured_times_file" "$output_file" "$test_name" --append
 }
-
-# import logging functions
-source "$LOGGING_SCRIPT" "$LOG_FILE"
-echo "Storing logs in file: $LOG_FILE ..."
 
 
 ###############################################################################

@@ -1,4 +1,4 @@
--- set orders with items in China to canceled
+-- Usunięcie wybranego magazynu i zmiana wszystkich zamówień na anulowane 2.sql
 update ORDERS
 set STATUS = 'Canceled'
 where STATUS = 'Pending' and ORDER_ID in (
@@ -7,7 +7,6 @@ where STATUS = 'Pending' and ORDER_ID in (
     join PRODUCTS P on OI.PRODUCT_ID = P.PRODUCT_ID
     join INVENTORIES I on P.PRODUCT_ID = I.PRODUCT_ID
     join WAREHOUSES W on I.WAREHOUSE_ID = W.WAREHOUSE_ID
-    join LOCATIONS L on W.LOCATION_ID = L.LOCATION_ID
-    join COUNTRIES C on L.COUNTRY_ID = C.COUNTRY_ID
-    where c.COUNTRY_NAME = 'China'
+    where W.WAREHOUSE_NAME= 'Cardinal Health'
     );
+delete from WAREHOUSES where WAREHOUSE_NAME = 'Cardinal Health';
