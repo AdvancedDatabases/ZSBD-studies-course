@@ -9,7 +9,7 @@ WHERE CUSTOMER_ID IN
                  (
                      SELECT *
                      FROM ORDERS
-                     WHERE TO_DATE(ORDER_DATE, 'yyyy-MM-dd') >= TO_DATE('2017-01-01', 'yyyy-MM-dd')
+                     WHERE ORDER_DATE >= TO_DATE('2013-01-01', 'yyyy-MM-dd')
                  ) O ON CUST.CUSTOMER_ID = O.CUSTOMER_ID
                      JOIN ORDER_ITEMS OI on O.ORDER_ID = OI.ORDER_ID
                      JOIN PRODUCTS P on OI.PRODUCT_ID = P.PRODUCT_ID
