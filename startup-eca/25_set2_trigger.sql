@@ -13,7 +13,7 @@ BEGIN
         join PRODUCTS P on OI.PRODUCT_ID = P.PRODUCT_ID
         join INVENTORIES I on P.PRODUCT_ID = I.PRODUCT_ID
         join WAREHOUSES W on I.WAREHOUSE_ID = W.WAREHOUSE_ID
-        where W.WAREHOUSE_ID = :OLD.WAREHOUSE_ID
+        where W.WAREHOUSE_NAME = :OLD.WAREHOUSE_NAME
         );
     commit;
 END;
