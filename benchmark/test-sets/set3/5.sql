@@ -5,6 +5,7 @@ znajdowały się na liście top 1000 najczęściej zamawianych produktów. ~1000
 
 -- note: cannot use 'with' along with 'update'
 -- increase by 10% products with quantity larger than 1000
+-- ~ 1000 rows
 UPDATE PRODUCTS
 SET LIST_PRICE = (LIST_PRICE + LIST_PRICE * 0.1)
 WHERE PRODUCT_ID IN
@@ -21,6 +22,7 @@ WHERE PRODUCT_ID IN
     HAVING sum(i.QUANTITY) >= 1000));
 
 -- increase by 50% products with quantity smaller than 1000
+-- ~ 1500 rows
 UPDATE PRODUCTS
 SET LIST_PRICE = (LIST_PRICE + LIST_PRICE * 0.5)
 WHERE PRODUCT_ID IN
@@ -36,8 +38,28 @@ WHERE PRODUCT_ID IN
     GROUP BY p.PRODUCT_ID
     HAVING sum(i.QUANTITY) < 1000));
 
-
 ------ CHECKS
+
+-- check number of affected rows in orders
+-- part I + II: ~ 13 000
+/*
+select count(*) from orders o join ORDER_ITEMS oi on o.ORDER_ID = oi.ORDER_ID
+join PRODUCTS p on oi.PRODUCT_ID = p.PRODUCT_ID
+where p.PRODUCT_ID in
+(select PRODUCT_ID from Products
+WHERE PRODUCT_ID IN
+    ((SELECT PRODUCT_ID from (SELECT PRODUCT_ID, COUNT(*) FROM (SELECT p.PRODUCT_ID, p.PRODUCT_NAME, o.ORDER_DATE
+    FROM PRODUCTS p JOIN ORDER_ITEMS oi on p.PRODUCT_ID = oi.PRODUCT_ID
+        JOIN ORDERS o on oi.ORDER_ID = o.ORDER_ID
+    WHERE ROUND(MONTHS_BETWEEN(sysdate, order_date),0) <= 3)
+    GROUP BY PRODUCT_ID
+    ORDER BY 2 DESC
+    FETCH FIRST 1000 ROWS ONLY)) INTERSECT
+    (select p.PRODUCT_ID prod_quantity
+    FROM PRODUCTS p join INVENTORIES i ON p.PRODUCT_ID = i.PRODUCT_ID
+    GROUP BY p.PRODUCT_ID)));
+*/
+
 /*
 -- check change of price for two selected products:
   -- 4531 - quantity == 1002
