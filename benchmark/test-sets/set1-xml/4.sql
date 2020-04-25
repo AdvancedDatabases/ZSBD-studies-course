@@ -1,9 +1,6 @@
 -- number and count of different products in each country inventories
-SELECT COUNTR.COUNTRY_ID, PC.CATEGORY_NAME, SUM(I.QUANTITY) quantity, COUNT(P.PRODUCT_ID) diff_products
-FROM COUNTRIES COUNTR
-    JOIN LOCATIONS L on COUNTR.COUNTRY_ID = L.COUNTRY_ID
-    JOIN WAREHOUSES W on L.LOCATION_ID = W.LOCATION_ID
+SELECT extractValue(W.LOCATION, 'location/country/countryId') , extractValue(P.category, 'category/categoryName'), SUM(I.QUANTITY) quantity, COUNT(P.PRODUCT_ID) diff_products
+FROM WAREHOUSES W
     JOIN INVENTORIES I on W.WAREHOUSE_ID = I.WAREHOUSE_ID
     JOIN PRODUCTS P on I.PRODUCT_ID = P.PRODUCT_ID
-    JOIN PRODUCT_CATEGORIES PC on P.CATEGORY_ID = PC.CATEGORY_ID
-GROUP BY COUNTR.COUNTRY_ID, PC.CATEGORY_NAME;
+GROUP BY extractValue(W.LOCATION, 'location/country/countryId') , extractValue(P.category, 'category/categoryName');

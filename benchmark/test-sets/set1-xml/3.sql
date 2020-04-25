@@ -1,9 +1,11 @@
 --avg order cost sold by Purchasing Clerk whoose manager has id 1 for category of products with stocks in germany
-SELECT AVG(OI.UNIT_PRICE*OI.QUANTITY), PC.CATEGORY_NAME
-FROM PRODUCT_CATEGORIES PC
-    JOIN PRODUCTS P on PC.CATEGORY_ID = P.CATEGORY_ID
-    JOIN ORDER_ITEMS OI on P.PRODUCT_ID = OI.PRODUCT_ID
-WHERE ORDER_ID IN (
+SELECT AVG(extractValue(value, '//unitPrice')*extractValue(value, '//quantity')), extractValue(P.category, 'category/categoryName')
+FROM PRODUCTS P, (
+    SELECT VALUE(oi) value, o.ORDER_ID orderId
+    FROM Orders o,
+         TABLE(XMLSEQUENCE(EXTRACT(o.order_items, '/orderItems/*'))) oi)
+WHERE extractValue(value, '//productId')=p.PRODUCT_ID
+AND orderId IN (
     SELECT O2.ORDER_ID
     FROM ORDERS O2
     WHERE SALESMAN_ID IN (
@@ -15,8 +17,6 @@ WHERE ORDER_ID IN (
     SELECT I.PRODUCT_ID
     FROM INVENTORIES I
              JOIN WAREHOUSES W on I.WAREHOUSE_ID = W.WAREHOUSE_ID
-             JOIN LOCATIONS L on W.LOCATION_ID = L.LOCATION_ID
-             JOIN COUNTRIES C2 on L.COUNTRY_ID = C2.COUNTRY_ID
-    WHERE L.COUNTRY_ID LIKE 'DE'
+    WHERE extractValue(W.LOCATION, 'location/country/countryId') LIKE 'DE'
 )
-GROUP BY PC.CATEGORY_NAME;
+GROUP BY extractValue(P.category, 'category/categoryName');
