@@ -179,26 +179,26 @@ alter table ORDERS add (order_items sys.XMLTYPE)
    element "orderItems";
 
 update ORDERS set order_items = XMLType(
-'<orderItems>
-	<orderItem>
+'<orderitems>
+	<orderitem>
         <itemId>1</itemId>
         <productId>7283</productId>
         <quantity>208.00</quantity>
         <unitPrice>59.99</unitPrice>
-	</orderItem>
-    <orderItem>
+	</orderitem>
+    <orderitem>
         <itemId>2</itemId>
         <productId>4486</productId>
         <quantity>920.00</quantity>
         <unitPrice>56.33</unitPrice>
-	</orderItem>
-    <orderItem>
+	</orderitem>
+    <orderitem>
         <itemId>3</itemId>
         <productId>7083</productId>
         <quantity>401.00</quantity>
         <unitPrice>92.35</unitPrice>
-	</orderItem>
-</orderItems>'
+	</orderitem>
+</orderitems>'
 ) where ORDER_ID = 318;
 
 select * from usr.ORDERS where ORDER_ID = 318;
@@ -208,4 +208,3 @@ select extractValue(ORDER_ITEMS, '//orderItems/orderItem[1]/itemId') as item_id,
     extractValue(ORDER_ITEMS, '//orderItems/orderItem[1]/quantity') as quantity,
     extractValue(ORDER_ITEMS, '//orderItems/orderItem[1]/unitPrice') as unit_price
 from usr.ORDERS where ORDER_ID = 318;
-

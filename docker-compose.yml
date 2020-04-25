@@ -1,6 +1,7 @@
 version: "2.2"
 
 services:
+  # starts database with existed volume 
   benchmark-env:
     image: daggerok/oracle:12.1.0.2-se2
     container_name: zsbd-container
@@ -15,7 +16,8 @@ services:
     volumes:
       - ./setup:/docker-entrypoint-initdb.d/setup
       - ./benchmark:/home/oracle/benchmark
-      # - ./startup:/docker-entrypoint-initdb.d/startup
+      # - ./startup:/docker-entrypoint-initdb.d/startup  # this is disabled
+      # because volume already contains data imported in startup
       - oracledata:/opt/oracle/oradata
     cpus: '0.50'
     mem_limit: 1073741824
@@ -39,6 +41,7 @@ services:
     cpus: '0.50'
     mem_limit: 1073741824
 
+  # data re-imported from binary dump during every startup
   normal-env:
     image: daggerok/oracle:12.1.0.2-se2
     container_name: zsbd-container
@@ -56,6 +59,57 @@ services:
       - ./benchmark:/home/oracle/benchmark
       - oracledata:/opt/oracle/oradata
 
+  # data re-imported from binary dump (with xml fields) during every startup
+  normal-xml-env:
+    image: daggerok/oracle:12.1.0.2-se2
+    container_name: zsbd-container
+    shm_size: 1g
+    working_dir: /home/oracle/benchmark
+    environment:
+      ORACLE_PWD: password
+      ORACLE_SID: sid
+      ORACLE_PDB: pdb
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./setup:/docker-entrypoint-initdb.d/setup
+      - ./init_xml_startup:/docker-entrypoint-initdb.d/startup
+      - ./benchmark:/home/oracle/benchmark
+      - oracledata:/opt/oracle/oradata
+
+  inserts-env:
+    image: daggerok/oracle:12.1.0.2-se2
+    container_name: zsbd-container
+    shm_size: 1g
+    working_dir: /home/oracle/benchmark
+    environment:
+      ORACLE_PWD: password
+      ORACLE_SID: sid
+      ORACLE_PDB: pdb
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./setup:/docker-entrypoint-initdb.d/setup
+      - ./inserts_startup:/docker-entrypoint-initdb.d/startup
+      - ./benchmark:/home/oracle/benchmark
+      - oracledata:/opt/oracle/oradata
+
+  xml-inserts-env:
+    image: daggerok/oracle:12.1.0.2-se2
+    container_name: zsbd-container
+    shm_size: 1g
+    working_dir: /home/oracle/benchmark
+    environment:
+      ORACLE_PWD: password
+      ORACLE_SID: sid
+      ORACLE_PDB: pdb
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./setup:/docker-entrypoint-initdb.d/setup
+      - ./xml_inserts_startup:/docker-entrypoint-initdb.d/startup
+      - ./benchmark:/home/oracle/benchmark
+      - oracledata:/opt/oracle/oradata
 
 volumes:
   oracledata:

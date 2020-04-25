@@ -15,10 +15,14 @@ source ./utils.sh
 
 container_name='zsbd-container'
 loaded_data_msg='XDB initialized'
-service_name='normal-env'  # call this service from docker-compose to recreate
-						   # data from dump into volume
+# call this service from docker-compose to recreate
+# data from dump into volume
+# service_name='normal-env'
+service_name='normal-xml-env'
 existed_volume_name='zsbd-studies-course_oracledata'
 new_volume_name='zsbd-studies-course_oracledata-dump'
+
+echo -e "========== USING $service_name TO RECREATE DOCKER VOLUME DUMP ==========\n"
 
 docker-compose down  # if anything is working, stop this
 docker volume rm zsbd-studies-course_oracledata
