@@ -3,7 +3,7 @@ SELECT AVG(extractValue(value, '//unitPrice')*extractValue(value, '//quantity'))
 FROM PRODUCTS P, (
     SELECT VALUE(oi) value, o.ORDER_ID orderId
     FROM Orders o,
-         TABLE(XMLSEQUENCE(EXTRACT(o.order_items, '/orderItems/*'))) oi)
+         TABLE(XMLSEQUENCE(EXTRACT(o.order_items, '/orderitems/*'))) oi)
 WHERE extractValue(value, '//productId')=p.PRODUCT_ID
 AND orderId IN (
     SELECT O2.ORDER_ID
