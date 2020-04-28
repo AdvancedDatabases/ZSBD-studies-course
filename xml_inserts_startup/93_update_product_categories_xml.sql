@@ -56,7 +56,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 11;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 12;
 update usr.products set category = XMLType('<category>
@@ -86,7 +86,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 17;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 18;
 update usr.products set category = XMLType('<category>
@@ -4151,7 +4151,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 830;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 831;
 update usr.products set category = XMLType('<category>
@@ -4161,12 +4161,12 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 832;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 833;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 834;
 update usr.products set category = XMLType('<category>
@@ -4176,12 +4176,12 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 835;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 836;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 837;
 update usr.products set category = XMLType('<category>
@@ -4516,7 +4516,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 903;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 904;
 update usr.products set category = XMLType('<category>
@@ -4531,7 +4531,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 906;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 907;
 update usr.products set category = XMLType('<category>
@@ -8616,7 +8616,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 1723;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 1724;
 update usr.products set category = XMLType('<category>
@@ -9246,7 +9246,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 1849;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 1850;
 update usr.products set category = XMLType('<category>
@@ -15671,7 +15671,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 3134;
 update usr.products set category = XMLType('<category>
   <categoryId>52</categoryId>
-  <categoryName>Kits &amp; Sets</categoryName>
+  <categoryName>Kits and Sets</categoryName>
 </category>
 ') where product_id = 3135;
 update usr.products set category = XMLType('<category>
@@ -16776,7 +16776,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 3355;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 3356;
 update usr.products set category = XMLType('<category>
@@ -18696,7 +18696,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 3739;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 3740;
 update usr.products set category = XMLType('<category>
@@ -19616,7 +19616,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 3923;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 3924;
 update usr.products set category = XMLType('<category>
@@ -26971,7 +26971,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5394;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 5395;
 update usr.products set category = XMLType('<category>
@@ -27006,7 +27006,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5401;
 update usr.products set category = XMLType('<category>
   <categoryId>48</categoryId>
-  <categoryName>Hands &amp; Nails</categoryName>
+  <categoryName>Hands and Nails</categoryName>
 </category>
 ') where product_id = 5402;
 update usr.products set category = XMLType('<category>
@@ -27031,7 +27031,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5406;
 update usr.products set category = XMLType('<category>
   <categoryId>48</categoryId>
-  <categoryName>Hands &amp; Nails</categoryName>
+  <categoryName>Hands and Nails</categoryName>
 </category>
 ') where product_id = 5407;
 update usr.products set category = XMLType('<category>
@@ -27051,7 +27051,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5410;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 5411;
 update usr.products set category = XMLType('<category>
@@ -27061,7 +27061,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5412;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 5413;
 update usr.products set category = XMLType('<category>
@@ -27071,12 +27071,12 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5414;
 update usr.products set category = XMLType('<category>
   <categoryId>48</categoryId>
-  <categoryName>Hands &amp; Nails</categoryName>
+  <categoryName>Hands and Nails</categoryName>
 </category>
 ') where product_id = 5415;
 update usr.products set category = XMLType('<category>
   <categoryId>48</categoryId>
-  <categoryName>Hands &amp; Nails</categoryName>
+  <categoryName>Hands and Nails</categoryName>
 </category>
 ') where product_id = 5416;
 update usr.products set category = XMLType('<category>
@@ -27101,7 +27101,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5420;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 5421;
 update usr.products set category = XMLType('<category>
@@ -27196,7 +27196,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5439;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 5440;
 update usr.products set category = XMLType('<category>
@@ -27406,7 +27406,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5481;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 5482;
 update usr.products set category = XMLType('<category>
@@ -28726,22 +28726,22 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 5745;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 5746;
 update usr.products set category = XMLType('<category>
   <categoryId>48</categoryId>
-  <categoryName>Hands &amp; Nails</categoryName>
+  <categoryName>Hands and Nails</categoryName>
 </category>
 ') where product_id = 5747;
 update usr.products set category = XMLType('<category>
   <categoryId>48</categoryId>
-  <categoryName>Hands &amp; Nails</categoryName>
+  <categoryName>Hands and Nails</categoryName>
 </category>
 ') where product_id = 5748;
 update usr.products set category = XMLType('<category>
   <categoryId>48</categoryId>
-  <categoryName>Hands &amp; Nails</categoryName>
+  <categoryName>Hands and Nails</categoryName>
 </category>
 ') where product_id = 5749;
 update usr.products set category = XMLType('<category>
@@ -33546,7 +33546,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 6709;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 6710;
 update usr.products set category = XMLType('<category>
@@ -35901,7 +35901,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 7180;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 7181;
 update usr.products set category = XMLType('<category>
@@ -36026,12 +36026,12 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 7205;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 7206;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 7207;
 update usr.products set category = XMLType('<category>
@@ -36061,12 +36061,12 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 7212;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 7213;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 7214;
 update usr.products set category = XMLType('<category>
@@ -36096,7 +36096,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 7219;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 7220;
 update usr.products set category = XMLType('<category>
@@ -41131,7 +41131,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 8226;
 update usr.products set category = XMLType('<category>
   <categoryId>48</categoryId>
-  <categoryName>Hands &amp; Nails</categoryName>
+  <categoryName>Hands and Nails</categoryName>
 </category>
 ') where product_id = 8227;
 update usr.products set category = XMLType('<category>
@@ -41306,7 +41306,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 8261;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 8262;
 update usr.products set category = XMLType('<category>
@@ -42756,7 +42756,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 8551;
 update usr.products set category = XMLType('<category>
   <categoryId>52</categoryId>
-  <categoryName>Kits &amp; Sets</categoryName>
+  <categoryName>Kits and Sets</categoryName>
 </category>
 ') where product_id = 8552;
 update usr.products set category = XMLType('<category>
@@ -42796,7 +42796,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 8559;
 update usr.products set category = XMLType('<category>
   <categoryId>52</categoryId>
-  <categoryName>Kits &amp; Sets</categoryName>
+  <categoryName>Kits and Sets</categoryName>
 </category>
 ') where product_id = 8560;
 update usr.products set category = XMLType('<category>
@@ -42836,7 +42836,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 8567;
 update usr.products set category = XMLType('<category>
   <categoryId>52</categoryId>
-  <categoryName>Kits &amp; Sets</categoryName>
+  <categoryName>Kits and Sets</categoryName>
 </category>
 ') where product_id = 8568;
 update usr.products set category = XMLType('<category>
@@ -43491,7 +43491,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 8698;
 update usr.products set category = XMLType('<category>
   <categoryId>48</categoryId>
-  <categoryName>Hands &amp; Nails</categoryName>
+  <categoryName>Hands and Nails</categoryName>
 </category>
 ') where product_id = 8699;
 update usr.products set category = XMLType('<category>
@@ -52771,7 +52771,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 10554;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 10555;
 update usr.products set category = XMLType('<category>
@@ -53916,7 +53916,7 @@ update usr.products set category = XMLType('<category>
 ') where product_id = 10783;
 update usr.products set category = XMLType('<category>
   <categoryId>22</categoryId>
-  <categoryName>Exfoliators &amp; Scrubs</categoryName>
+  <categoryName>Exfoliators and Scrubs</categoryName>
 </category>
 ') where product_id = 10784;
 update usr.products set category = XMLType('<category>
