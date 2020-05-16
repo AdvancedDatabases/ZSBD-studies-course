@@ -1,7 +1,7 @@
 version: "2.2"
 
 services:
-  # starts database with existed volume 
+  # starts database with existed volume
   benchmark-env:
     image: daggerok/oracle:12.1.0.2-se2
     container_name: zsbd-container
@@ -59,7 +59,7 @@ services:
       - ./benchmark:/home/oracle/benchmark
       - oracledata:/opt/oracle/oradata
 
-  # data re-imported from binary dump (with xml fields) during every startup
+  # data re-imported from binary dump dump-xml.dmp (with xml fields) during every startup
   normal-xml-env:
     image: daggerok/oracle:12.1.0.2-se2
     container_name: zsbd-container
@@ -74,6 +74,24 @@ services:
     volumes:
       - ./setup:/docker-entrypoint-initdb.d/setup
       - ./init_xml_startup:/docker-entrypoint-initdb.d/startup
+      - ./benchmark:/home/oracle/benchmark
+      - oracledata:/opt/oracle/oradata
+
+  # data re-imported from binary dump dump-geo.dmp (with geometry fields) during every startup
+  normal-geo-env:
+    image: daggerok/oracle:12.1.0.2-se2
+    container_name: zsbd-container
+    shm_size: 1g
+    working_dir: /home/oracle/benchmark
+    environment:
+      ORACLE_PWD: password
+      ORACLE_SID: sid
+      ORACLE_PDB: pdb
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./setup:/docker-entrypoint-initdb.d/setup
+      - ./init_geo_startup:/docker-entrypoint-initdb.d/startup
       - ./benchmark:/home/oracle/benchmark
       - oracledata:/opt/oracle/oradata
 
@@ -108,6 +126,23 @@ services:
     volumes:
       - ./setup:/docker-entrypoint-initdb.d/setup
       - ./xml_inserts_startup:/docker-entrypoint-initdb.d/startup
+      - ./benchmark:/home/oracle/benchmark
+      - oracledata:/opt/oracle/oradata
+
+  geo-inserts-env:
+    image: daggerok/oracle:12.1.0.2-se2
+    container_name: zsbd-container
+    shm_size: 1g
+    working_dir: /home/oracle/benchmark
+    environment:
+      ORACLE_PWD: password
+      ORACLE_SID: sid
+      ORACLE_PDB: pdb
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./setup:/docker-entrypoint-initdb.d/setup
+      - ./geo_inserts_startup:/docker-entrypoint-initdb.d/startup
       - ./benchmark:/home/oracle/benchmark
       - oracledata:/opt/oracle/oradata
 

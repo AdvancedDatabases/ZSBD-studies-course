@@ -18,7 +18,8 @@ loaded_data_msg='XDB initialized'
 # call this service from docker-compose to recreate
 # data from dump into volume
 # service_name='normal-env'
-service_name='normal-xml-env'
+# service_name='normal-xml-env'
+service_name='normal-geo-env'
 existed_volume_name='zsbd-studies-course_oracledata'
 new_volume_name='zsbd-studies-course_oracledata-dump'
 
