@@ -1,25 +1,15 @@
-UPDATE ORDERS
-SET SALESMAN_ID =
-        (
-            SELECT *
-            FROM (
-                     SELECT E.EMPLOYEE_ID
-                     FROM EMPLOYEES E
-                              JOIN ORDERS O ON E.EMPLOYEE_ID = O.SALESMAN_ID
-                              JOIN ORDER_ITEMS OI ON O.ORDER_ID = OI.ORDER_ID
-                              JOIN PRODUCTS P ON OI.PRODUCT_ID = P.PRODUCT_ID
-                     WHERE P.PRODUCT_ID IN
-                           (
-                               SELECT *
-                               FROM (
-                                        SELECT P2.PRODUCT_ID
-                                        FROM PRODUCTS P2
-                                                 JOIN INVENTORIES I on P2.PRODUCT_ID = I.PRODUCT_ID
-                                        ORDER BY I.QUANTITY DESC
-                                    )
-                               WHERE ROWNUM <= 1
-                           )
-                     ORDER BY (P.LIST_PRICE * OI.QUANTITY) DESC
-                 )
-            WHERE ROWNUM <= 1
-        );
+select WAREHOUSE_ID, WAREHOUSE_NAME,
+(
+    SELECT COUNT(W2.WAREHOUSE_ID)
+    FROM WAREHOUSES W2 join LOCATIONS L2 on W2.LOCATION_ID = L2.LOCATION_ID
+    WHERE (
+        select SDO_GEOM.SDO_DISTANCE(
+            (L1.GEO_LOCATION),
+            (L2.GEO_LOCATION),
+            10,
+            'unit=KM'
+        ) from dual) < 50
+) as NeighboursCount
+from WAREHOUSES W1 join LOCATIONS L1 on W1.LOCATION_ID = L1.LOCATION_ID
+order by NeighboursCount desc;
+
