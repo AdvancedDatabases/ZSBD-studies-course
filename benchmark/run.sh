@@ -19,6 +19,9 @@ remote_test_suites_dir_name='test-sets'
 worker_name='worker.sh'
 test_suite_cfg_name='require_restart'
 remote_suite_files_list="$PWD/remote_scripts_list.tmp"
+remote_suite_pre_files_list="$PWD/remote_pre_scripts_list.tmp"  # scripts which
+                    # should be called before each exact test - for now lets assume
+                    # that there will be only one file
 container_name='zsbd-container'
 service_name='benchmark-env'
 service_with_eca_name='benchmark-eca-env'
@@ -32,6 +35,7 @@ docker_compose_dir=$(as_abs '..')
 loaded_data_msg='DATABASE IS READY TO USE!'
 benchmark_summary='benchmark_summary.html'
 with_eca=''
+remote_pre_script=''   # name of script which should be called before exact test script
 
 # parse parameters
 for i in "$@"
@@ -91,6 +95,13 @@ run_test() {
     fail_if_empty "$1" && fail_if_empty "$2"
     test_script_path="$1"
     n_times=$2
+    # handle pre scipt - will be included in file with results but its execution
+    # time won't influence other scripts
+    if [ ! -z "$remote_pre_script" ];then
+        INFO "Calling preparation script '$remote_pre_script' before test '$test_script_path' ..."
+        cmd="$remote_worker -i=$remote_pre_script -n=1"
+        container_exec "$container_name" "$cmd"
+    fi
     cmd="$remote_worker -i=$test_script_path -n=$n_times"
     container_exec "$container_name" "$cmd"
 }
@@ -105,6 +116,10 @@ run_single_test_and_reset() {
 
 get_remote_test_paths() {
     get_remote_file_ext_paths "$remote_suite_dir" "$container_name" '*.sql' "$remote_suite_files_list"
+}
+
+get_remote_pre_test_paths() {
+    get_remote_file_ext_paths "$remote_suite_dir" "$container_name" '*prepare.sql' "$remote_suite_pre_files_list"
 }
 
 need_restart_after_each_test() {
@@ -155,9 +170,21 @@ local_test_suite_config="$PWD/$remote_test_suites_dir_name/$remote_suite_name/$t
 get_remote_test_paths
 pass_if_nonempty_file "$remote_suite_files_list"
 
+# workaround to exclude pre script from test suite - it will be called anyway but
+# in different place
+tmp_suite_files_list="$remote_suite_files_list"'-filtered.tmp'
+cp "$remote_suite_files_list" "$tmp_suite_files_list"
+grep -v 'prepare.sql' "$tmp_suite_files_list" > "$remote_suite_files_list"
 tests_no=$(wc -l "$remote_suite_files_list")
 
 INFO "Starting benchmark for $tests_no tests from test suite '$remote_test_suites_dir_name' ($remote_suite_dir) ..."
+
+get_remote_pre_test_paths
+remote_pre_script=$(head -n 1 "$remote_suite_pre_files_list")
+if [ ! -z "$remote_pre_script" ];then
+    INFO "Preparation script '$remote_pre_script' will be called before each test ..."
+fi
+
 while read test_path; do
     test_name=$( echo ${test_path##/*/} )
     need_restart_after_each_test "$test_path" "$local_test_suite_config"
