@@ -12,6 +12,7 @@ INSERT INTO user_sdo_geom_metadata
      ),
   8307   -- SRID
 );
+/
 
 INSERT INTO user_sdo_geom_metadata
     (TABLE_NAME,
@@ -27,14 +28,19 @@ INSERT INTO user_sdo_geom_metadata
      ),
   8307   -- SRID
 );
+/
 
 CREATE INDEX customer_spatial_idx
    ON CUSTOMERS(GEO_LOCATION)
    INDEXTYPE IS MDSYS.SPATIAL_INDEX;
+/
 
 CREATE INDEX location_spatial_idx
    ON LOCATIONS(GEO_LOCATION)
    INDEXTYPE IS MDSYS.SPATIAL_INDEX;
+/
 
 select * from CUSTOMERS;
+/
+
 select * from LOCATIONS;

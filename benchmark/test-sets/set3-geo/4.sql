@@ -1,7 +1,7 @@
 select CUSTOMER_ID, AVG(max_prod_dist) avg_dist
 from
-(select c.CUSTOMER_ID as CUSTOMER_ID,
-    MAX(SDO_GEOM.SDO_DISTANCE(
+    (select c.CUSTOMER_ID as CUSTOMER_ID,
+        MAX(SDO_GEOM.SDO_DISTANCE(
                 (C.GEO_LOCATION),
                 (L.GEO_LOCATION),
                 10,

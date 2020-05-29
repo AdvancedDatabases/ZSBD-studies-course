@@ -13,7 +13,7 @@ create or replace
  begin
    return earth_radius * 2 * atan2(sqrt(arc), sqrt(1-arc));
  end;
-
+/
 
 select WAREHOUSE_ID, WAREHOUSE_NAME,
 (

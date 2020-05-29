@@ -13,6 +13,8 @@ create or replace
  begin
    return earth_radius * 2 * atan2(sqrt(arc), sqrt(1-arc));
  end;
+/
+
 select CUSTOMER_ID, AVG(max_prod_dist) avg_dist
 from
 (select c.CUSTOMER_ID as CUSTOMER_ID,

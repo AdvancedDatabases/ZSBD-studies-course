@@ -30,7 +30,7 @@ INSERT INTO user_sdo_geom_metadata
 
 CREATE INDEX customer_spatial_idx
    ON CUSTOMERS(GEO_LOCATION)
-   indextype is mdsys.spatial_index_v2 PARAMETERS('layer_gtype=POINT cbtree_index=true');
+   indextype is mdsys.spatial_index PARAMETERS('cbtree_index=true');
 
 CREATE INDEX location_spatial_idx
    ON LOCATIONS(GEO_LOCATION)
@@ -38,3 +38,7 @@ CREATE INDEX location_spatial_idx
 
 select * from CUSTOMERS;
 select * from LOCATIONS;
+
+SELECT * FROM v$version;
+
+drop index location_spatial_idx force;
