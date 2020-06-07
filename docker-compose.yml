@@ -159,7 +159,24 @@ services:
       - "1521:1521"
     volumes:
       - ./setup:/docker-entrypoint-initdb.d/setup
-      - ./init_startup:/docker-entrypoint-initdb.d/startup
+      - ./inserts_startup:/docker-entrypoint-initdb.d/startup
+      - ./benchmark:/home/oracle/benchmark
+      - oracledata:/opt/oracle/oradata
+
+  column-env-inmemory:
+    image: zaawansowanesystemybazdanych/bazadanych
+    container_name: zsbd-container
+    shm_size: 1g
+    working_dir: /home/oracle/benchmark
+    environment:
+      ORACLE_PWD: password
+      ORACLE_SID: sid
+      ORACLE_PDB: pdb
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./setup:/docker-entrypoint-initdb.d/setup
+      - ./inmemory_startup:/docker-entrypoint-initdb.d/startup
       - ./benchmark:/home/oracle/benchmark
       - oracledata:/opt/oracle/oradata
 
