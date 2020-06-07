@@ -176,7 +176,7 @@ services:
       - "1521:1521"
     volumes:
       - ./setup:/docker-entrypoint-initdb.d/setup
-      - ./init_startup:/docker-entrypoint-initdb.d/startup
+      - ./inmemory_startup:/docker-entrypoint-initdb.d/startup
       - ./benchmark:/home/oracle/benchmark
       - oracledata:/opt/oracle/oradata
 
