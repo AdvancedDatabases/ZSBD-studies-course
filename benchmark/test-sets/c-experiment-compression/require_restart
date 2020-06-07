@@ -1,6 +1,6 @@
-2.sql
-4.sql
-6.sql
-8.sql
-10.sql
-12.sql
+11-capacityhigh.sql
+1-nomem.sql
+3-dml.sql
+5-querylow.sql
+7-queryhigh.sql
+9-capacitylow.sql
